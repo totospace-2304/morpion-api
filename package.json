@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "tsc-watch --onSuccess 'node es/index.js'"
+    "dev": "tsc-watch --onSuccess 'node es/index.js'",
+    "build": "tsc",
+    "start": "node es/index.js"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
