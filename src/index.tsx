@@ -1,25 +1,29 @@
 import fastify from "fastify";
+import ws from "./ws";
 import cors from "@fastify/cors";
 import config from "config";
 import * as Type from "@fastify/type-provider-typebox";
+import * as GameData from "./game-data";
 
-const app = fastify({
+const server = fastify({
   ajv: { customOptions: { strict: "log", keywords: ["kind", "modifier"] } },
 }).withTypeProvider<Type.TypeBoxTypeProvider>();
+server.register(cors);
 
-app.register(cors);
+const use = (param1: any) => {
+  return { param1 };
+};
+use(ws);
 
-app.get("/coucou", () => {
-  return "coucou";
+server.get("/api/game", () => {
+  return { squares: GameData.squares, currentMove: GameData.currentMove };
 });
-
-// app.register(esfAcademy, { prefix: "/api/esf-academy" });
 
 async function start() {
   const port = config.get("port") as number;
 
   try {
-    await app.listen({ host: "0.0.0.0", port });
+    await server.listen({ host: "0.0.0.0", port });
   } catch (err) {
     process.exit(1);
   }
