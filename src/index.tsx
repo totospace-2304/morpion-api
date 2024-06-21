@@ -15,7 +15,7 @@ const use = (param1: any) => {
 };
 use(ws);
 
-server.get("/api/game", () => {
+server.get("/toto/morpion/api/game", () => {
   return { squares: GameData.squares, currentMove: GameData.currentMove };
 });
 
