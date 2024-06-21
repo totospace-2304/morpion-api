@@ -1,7 +1,7 @@
 import WebSocket from "ws";
 import * as GameData from "./game-data";
 
-const wss = new WebSocket.Server({ port: 9001 });
+const wss = new WebSocket.Server({ port: 9101 });
 console.log("started web socket server for morpion...");
 
 wss.on("open", function open() {
