@@ -1,0 +1,21 @@
+{
+  "apps": [
+    {
+      "name": "morpion-api",
+      "script": "./es/index.js",
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env_jackdarius": { "NODE_ENV": "production" }
+    }
+  ],
+  "deploy": {
+    "jackdarius": {
+      "user": "jackdarius",
+      "host": "163.172.160.53",
+      "ref": "origin/main",
+      "repo": "git@github.com:totospace-2304/morpion-api.git",
+      "path": "/home/jackdarius/apps/morpion-api",
+      "pre-deploy-local": "git fetch",
+      "post-deploy": "yarn && yarn build && pm2 startOrRestart ecosystem.json --env jackdarius"
+    }
+  }
+}
